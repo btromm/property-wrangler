@@ -2,11 +2,9 @@
 
 A powerful Obsidian plugin for bulk editing, replacing, and deleting YAML frontmatter properties across your entire vault.
 
-## ⚠️ Important Disclaimer
-
 **BACKUP YOUR VAULT BEFORE USING THIS PLUGIN!**
 
-This plugin was developed with the assistance of Large Language Models (LLMs). While thoroughly tested, the author (Bobby Tromm) is not liable for any data loss, corruption, or other issues that may arise from using this plugin. Beta software carries inherent risks - always backup your vault before performing bulk operations on your notes.
+This plugin was entirely vibe-coded with an LLM. I am not liable for any data loss, corruption, or other issues that may arise from using this plugin.
 
 ## Features
 
@@ -116,13 +114,6 @@ If your search returns no results:
 - Ensure your files actually have YAML frontmatter (content between `---` markers)
 - Try leaving the "Current Value" field blank to see all values for that property
 
-### Plugin Not Appearing
-
-If the plugin doesn't appear after installation:
-- Restart Obsidian completely
-- Check that all three files (`main.js`, `manifest.json`, `styles.css`) are in the plugin folder
-- Ensure the plugin is enabled in Settings → Community Plugins
-
 ## Development
 
 This plugin is built with:
@@ -138,10 +129,7 @@ npm run build
 
 ## Support
 
-If you encounter issues:
-1. Check the console (Ctrl/Cmd + Shift + I) for error messages
-2. Create an issue on the [GitHub repository](https://github.com/YOUR_USERNAME/properties-wrangler/issues)
-3. Include your Obsidian version, plugin version, and any error messages
+If you encounter issues, ask an LLM. I am providing this solely for any menial benefit that it may have for you, and will not be maintaining this actively.
 
 ## License
 

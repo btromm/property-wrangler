@@ -1,94 +1,158 @@
-# Obsidian Sample Plugin
+# Properties Wrangler
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+A powerful Obsidian plugin for bulk editing, replacing, and deleting YAML frontmatter properties across your entire vault.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## ⚠️ Important Disclaimer
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+**BACKUP YOUR VAULT BEFORE USING THIS PLUGIN!**
 
-## First time developing plugins?
+This plugin was developed with the assistance of Large Language Models (LLMs). While thoroughly tested, the author (Bobby Tromm) is not liable for any data loss, corruption, or other issues that may arise from using this plugin. Beta software carries inherent risks - always backup your vault before performing bulk operations on your notes.
 
-Quick starting guide for new plugin devs:
+## Features
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+- **Search & Replace**: Find and replace property values across all markdown files in your vault
+- **Bulk Delete**: Remove specific properties from all files that contain them
+- **Preview Changes**: See exactly which files and properties will be affected before making changes
+- **Error Handling**: Gracefully handles files with problematic YAML syntax
+- **User-Friendly Interface**: Clean, tabbed interface with confirmation dialogs
 
-## Releasing new releases
+## Installation
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+### Option 1: Using BRAT (Recommended)
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+1. Install the [BRAT plugin](https://github.com/TfTHacker/obsidian42-brat) from Obsidian's Community Plugins
+2. Enable BRAT in your plugin settings
+3. Open the command palette (`Ctrl/Cmd + P`) and run the command "BRAT: Add a beta plugin for testing"
+4. Enter this repository URL: `https://github.com/YOUR_USERNAME/properties-wrangler`
+5. Click "Add Plugin" and wait for BRAT to install it
+6. Go to Settings → Community Plugins and enable "Properties Wrangler"
 
-## Adding your plugin to the community plugin list
+### Option 2: Manual Installation
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+1. Download the latest release files (`main.js`, `manifest.json`, and `styles.css`) from the [releases page](https://github.com/YOUR_USERNAME/properties-wrangler/releases)
+2. Navigate to your vault's `.obsidian/plugins/` directory
+   - On Windows: `C:\Users\YourName\Documents\YourVaultName\.obsidian\plugins\`
+   - On Mac: `/Users/YourName/Documents/YourVaultName/.obsidian/plugins/`
+   - On Linux: `/home/YourName/Documents/YourVaultName/.obsidian/plugins/`
+3. Create a new folder called `yaml-bulk-editor`
+4. Copy the downloaded files into this folder
+5. Restart Obsidian or reload the plugins
+6. Go to Settings → Community Plugins and enable "Properties Wrangler"
 
-## How to use
+## Usage
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+### Opening the Plugin
 
-## Manually installing the plugin
+You can access Properties Wrangler in three ways:
+1. Click the pencil icon in the ribbon (left sidebar)
+2. Use the command palette (`Ctrl/Cmd + P`) and search for "Open Properties Wrangler"
+3. Use the hotkey if you've assigned one in Settings → Hotkeys
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+### Search & Replace Properties
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+1. Open Properties Wrangler and select the "Search & Replace" tab
+2. Enter the **Property Key** you want to search for (e.g., "category", "tags", "status")
+3. Enter the **Current Value** you want to replace (leave blank to see all values for that property)
+4. Enter the **New Value** you want to replace it with
+5. Click **Preview Changes** to see which files will be affected
+6. Click **Replace All** to perform the bulk replacement
 
-## Funding URL
+**Example Use Cases:**
+- Change `category: Literature` to `category: [[Literature]]` across all files
+- Update `status: draft` to `status: published` for multiple notes
+- Replace old tag names with new ones
 
-You can include funding URLs where people who use your plugin can financially support it.
+### Delete Properties
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+1. Select the "Delete Properties" tab
+2. Enter the **Property Key** you want to delete from all files
+3. Click **Preview Deletion** to see which files contain this property
+4. Click **Delete Property** to remove it from all affected files
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+**Example Use Cases:**
+- Remove deprecated properties like `old-category`
+- Clean up automatically generated properties you no longer need
+- Remove test properties added during experimentation
+
+### Preview Feature
+
+The preview feature shows you:
+- How many properties match your search criteria
+- Which files contain the properties
+- The current values of those properties
+- How many files will be skipped due to YAML parsing errors
+
+### Error Handling
+
+The plugin gracefully handles files with problematic YAML syntax by:
+- Skipping files that can't be parsed
+- Continuing to process valid files
+- Notifying you how many files were skipped
+- Logging detailed errors to the console for debugging
+
+## Settings
+
+Access plugin settings through Settings → Community Plugins → Properties Wrangler → ⚙️
+
+- **Confirm deletion**: Show confirmation dialog before deleting properties (default: enabled)
+- **Show preview**: Show preview of changes before applying them (default: enabled)
+
+## Troubleshooting
+
+### Files Being Skipped
+
+If you see messages about files being skipped due to YAML parsing errors, this typically means:
+- Files contain compact YAML mappings like `{key: value, nested: {key: value}}`
+- Duplicate property keys in the frontmatter
+- Indentation issues in the YAML
+- Template syntax or special characters that break YAML parsing
+
+These files are safely skipped and won't cause the plugin to crash.
+
+### No Properties Found
+
+If your search returns no results:
+- Check that you're using the exact property key name (case-sensitive)
+- Ensure your files actually have YAML frontmatter (content between `---` markers)
+- Try leaving the "Current Value" field blank to see all values for that property
+
+### Plugin Not Appearing
+
+If the plugin doesn't appear after installation:
+- Restart Obsidian completely
+- Check that all three files (`main.js`, `manifest.json`, `styles.css`) are in the plugin folder
+- Ensure the plugin is enabled in Settings → Community Plugins
+
+## Development
+
+This plugin is built with:
+- TypeScript
+- Obsidian API
+- esbuild for bundling
+
+To build from source:
+```bash
+npm install
+npm run build
 ```
 
-If you have multiple URLs, you can also do:
+## Support
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
+If you encounter issues:
+1. Check the console (Ctrl/Cmd + Shift + I) for error messages
+2. Create an issue on the [GitHub repository](https://github.com/YOUR_USERNAME/properties-wrangler/issues)
+3. Include your Obsidian version, plugin version, and any error messages
 
-## API Documentation
+## License
 
-See https://github.com/obsidianmd/obsidian-api
+MIT License - see LICENSE file for details.
+
+## Changelog
+
+### v0.1.0 (Beta)
+- Initial release
+- Search and replace functionality
+- Bulk delete functionality
+- Preview changes feature
+- Error handling for problematic YAML files
+- Settings panel with confirmation options

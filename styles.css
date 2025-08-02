@@ -1,8 +1,101 @@
-/*
+/* YAML Bulk Editor Plugin Styles */
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.yaml-editor-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--background-modifier-border);
+    padding-bottom: 8px;
+}
 
-If your plugin does not need CSS, delete this file.
+.yaml-editor-tabs button {
+    padding: 8px 16px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
-*/
+.yaml-editor-tabs button:hover {
+    background: var(--background-modifier-hover);
+}
+
+.yaml-editor-tabs button.yaml-tab-active {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border-color: var(--interactive-accent);
+}
+
+.yaml-form {
+    margin-bottom: 20px;
+}
+
+.yaml-button-container {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: flex-start;
+}
+
+.yaml-button-container button {
+    padding: 8px 16px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.yaml-button-container button:hover {
+    background: var(--background-modifier-hover);
+}
+
+.yaml-button-container button.mod-cta {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border-color: var(--interactive-accent);
+}
+
+.yaml-button-container button.mod-warning {
+    background: var(--color-red);
+    color: var(--text-on-accent);
+    border-color: var(--color-red);
+}
+
+.yaml-results {
+    margin-top: 20px;
+}
+
+.yaml-results-list {
+    background: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    padding: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.yaml-result-item {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--background-modifier-border-hover);
+}
+
+.yaml-result-item:last-child {
+    border-bottom: none;
+}
+
+.yaml-result-item strong {
+    color: var(--text-accent);
+    font-weight: 600;
+}
+
+.yaml-result-item span {
+    font-family: var(--font-monospace);
+    font-size: 0.9em;
+    color: var(--text-muted);
+    margin-top: 4px;
+    display: block;
+}
